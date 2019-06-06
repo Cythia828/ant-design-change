@@ -1,0 +1,255 @@
+@import "~antd/lib/style/themes/default.less";
+
+@primary-color: #1890ff;               //全局主色：比如导航hover时的文字颜色、背景色基色、单选多选钮的颜色、
+                                                    // Steps的progress过程的背景色、switch的背景色、分页器被选中的页码的边框色、被选中页码文字的基色
+// @layout-header-background: #2e3943;            //Layout中的Header背景色：ant-layout-header
+// @layout-sider-background: #fff;                //Layout中Sider的背景色：ant-layout-sider
+// @layout-body-background: #f2f7fa;
+
+// @processing-color: rgb(191, 238, 22);             //进度条背景色:Progress完成部分的背景色，整个进度条的背景色是primary-color
+// @heading-color: #333333;                         // 标题色：表格表头
+// @font-family: 12px "Helvetica Neue", Helvetica, "Microsoft YaHei", "open sans",  Arial, sans-serif;
+// @font-size-base: 12px;                            // 主字号
+// @font-size-lg:12px;
+// @font-variant-base:12px;
+// @font-size-sm:12px;
+
+// @text-color: rgba(0, 0, 0, 0.65);                // 主文本色，包括侧边栏导航、单选多选框的文本颜色、Step的title
+// @text-color-secondary : rgba(0, 0, 0, 0.65);       // 次文本色：Step的description
+
+// @link-color:#108ee9;                              // a标签文本颜色
+// @link-hover-color: #108ee9;
+// @link-active-color: #fff;
+
+// Background color for `<body>`
+// @body-background: #f2f7fa;
+// Base background color for most components
+// @component-background: #fff;
+
+// @success-color: #52c41a;                          // 成功色
+// @warning-color: #faad14;                          // 警告色
+// @error-color: #f5222d;                            // 错误色
+// @disabled-color : rgba(36, 199, 58, 0.25);         // 失效色：被disabled的Radio的文本颜色、分页的不可用的上一页下一页按钮的箭头颜色
+// @border-radius-base: 4px;                           // 组件/浮层圆角
+// @border-color-base: #1890ff;                      // 边框色：input的边框、所有按钮的边框
+// @box-shadow-base: 0 2px 8px rgba(0, 0, 0, .15);   // 浮层阴影
+// @rectangle-color:#140412;
+// @background-color-light: hsv(0, 0, 98%);            // background of header and selected item
+
+
+// Dropdown
+// dropdown下面menu的文字颜色：@text-color
+// 每一项菜单的背景色：以全局色为基色
+
+// Button相关
+// @btn-primary-bg:#108ee9;                 //  按钮背景色
+// @btn-primary-color:#fff;            //按钮文本颜色
+// @btn-border-radius-base:20px;                       //按钮圆角边框
+// @btn-height-base: 28px;
+// @border-color-base:#d9d9d9;
+
+// Breadcrumb相关：可做页面导航
+// @breadcrumb-base-color:#333333;                   //Breadcrumb 无链接的文字颜色
+// @breadcrumb-link-color: @link-color;                  //Breadcrumb 可点链接文字的颜色
+// @breadcrumb-link-color-hover:fade(@link-color,0.5);             //Breadcrumb 可点链接文字hover时的颜色
+// @breadcrumb-last-item-color:#333333;              //Breadcrumb  当前页面title、无链接的文字颜色(最后一个breadcrumb的字体颜色)
+// @breadcrumb-font-size:12px;                         //Breadcrumb  文字大小
+// @breadcrumb-separator-color:#333333;                 //Breadcrumb  斜线（分隔线）的颜色
+// @breadcrumb-separator-margin:10px 5px 20px 30px;                  //Breadcrumb  斜线（分隔线）的margin，但因为是行内元素，只有水平margin生效
+
+
+// Menu相关
+// @menu-bg:@layout-sider-background;                                 //menu的背景色
+// @menu-item-color:rgba(0, 0, 0, 0.65);                         //menu 每一项菜单的文字颜色
+// @menu-highlight-color:#108ee9;                    //menu 每项菜单hover时的文字颜色
+@menu-item-height:64px;                            //二级菜单menu.item的高度
+@menu-inline-toplevel-item-height:64px;            //一级菜单menu.item的高度
+// @menu-item-active-bg:#108ee9;                    //菜单menu.item点击时的背景色
+// @menu-item-group-title-color:rgba(0,0,0,.65);
+// @menu-dark-bg: #2e3943;
+// @menu-dark-submenu-bg:#2e3943;
+// @menu-highlight-color:@link-color;                  //menu.item高亮时的文字颜色
+// @menu-dark-color: #fff;
+// @menu-dark-bg: #108ee9;
+// @menu-dark-arrow-color: #fff;
+// @menu-dark-submenu-bg: @primary-color;
+// @menu-dark-highlight-color: #fff;
+// @menu-dark-item-active-bg: @primary-color;
+
+// Pagination相关
+// 分页器被选中的页码的边框色、被选中页码文字的基色都是primary-color
+// @pagination-item-size:24px;                        //分页器的高度，也是每个页码的大小
+// @pagination-item-bg-active:#fff;                 //当前页码（被点击）的页码背景色
+
+// PageHeader相关:一般结合Breadcrumb使用，onBack代表了是否显示左上角back图标
+// @page-header-padding-horizontal:20px;              //水平的padding，左右
+// @page-header-padding-vertical:10px;                //竖直方向上的padding
+
+// Steps相关
+// Finished 已完成部分钩的颜色、正在进行中圆的背景色、已完成的那根线条的颜色：@primary-color；
+// 标题文字颜色：@text-color；描述文字颜色：@text-color-secondary；
+// In Progress 标题文字颜色：@heading-color；描述文字颜色：@text-color；
+// waiting 部分的步骤（例如：3）和圆圈的边框颜色：@disabled-color；
+// 标题文字颜色、描述文字颜色：@text-color-secondary；
+
+// Checkbox相关
+// 未点击时的边框颜色：@border-color-base
+// @checkbox-size:12px;                               //多选框的大小
+// @checkbox-color:#1890ff;                         //选中的框的背景色、被点击时的边框色
+// @checkbox-check-color:#fff;                     //未被点击的框的背景色、点击后的钩的颜色
+// @checkbox-border-width:1px;                     //边框的宽度
+
+// Radio相关
+// 未点击时的边框颜色：@border-color-base
+// 选中时radio钮的边框、中心点颜色：@primary-color
+// 与Radio相关的文字的颜色；@text-color；被禁用的disabled的文字颜色：@disabled-color；
+
+
+// DatePicker相关
+// input未被点击时的边框颜色：@border-color-base
+// input被点击时的边框和阴影色：@primary-color
+// input右边的小日历图标颜色基色：@disabled-color
+// 日历框顶部title（年月）：@heading-color
+// 日历框的日期颜色：@text-color
+// 日历框里左右箭头的颜色：@text-color-secondary
+// 日历框被选中的日期颜色、边框颜色、背景色基色：@primary-color
+
+// Input相关
+// input未被点击时的边框颜色：@border-color-base
+// input被点击时的边框和阴影色：@primary-color
+// @input-height-base: 28px;
+// @input-padding-horizontal:4px;
+// @input-padding-horizontal-base:7px;
+// @input-padding-vertical-base: 7px;
+// @input-padding-vertical-base: 4px;
+// @input-padding-vertical-sm: 1px;
+// @input-padding-vertical-lg: 6px;
+
+// Switch相关
+// disabled状态下（被禁用）背景色基色：@primary-color
+// 开的状态下背景色：@primary-color
+// 关的状态下背景色：@disabled-color
+
+// Message相关
+// @message-notice-content-padding:10px 16px;          //Message 的padding
+
+// Modal相关
+// Modal的title字体颜色：@heading-color
+// Modal内容的字体颜色：@text-color
+// @modal-body-padding: 24px;
+// @modal-header-bg:  #f9fafc;
+// @modal-footer-bg:  #f9fafc;
+// @modal-mask-bg: fade(@black, 65%);
+
+
+// Select相关
+// Select默认值的文字颜色：@text-color
+// Select未被点击时的边框颜色：@border-color-base
+// Select被点击时的边框和阴影色：@primary-color
+// Select选项文本颜色：@text-color
+// Select选项hover时的背景色基色：@primary-color
+// @select-border-color:#f0f0f0;                  // Select未被点击时的边框颜色
+
+// TimePicker相关
+// hover时的背景色：@primary-color
+
+// Card相关
+// extra的文字颜色：@link-color
+// @card-head-color:#333333;                      //Card的title的文字颜色，不修改则默认是@heading-color
+// @card-head-background:#fff;                 //Card的header部分的背景色，不修改则默认继承
+// @card-head-padding:10px;                         //Card的header部分的文字上下padding
+// @card-padding-base:20px;                         //Card的header部分左右padding（header这个盒子）
+// @card-background:#fff;
+
+// Calendar相关
+// 日期颜色：@text-color
+// hover时的背景色基色：@primary-color
+// 选中的日期的顶部边框色：@primary-color
+
+// tree
+// @tree-title-height: 24px;
+// @tree-child-padding: 18px;
+
+// List相关
+// List的边框颜色：@border-color-base
+// @list-header-background:#fff;                //List的header部分的背景色
+// @list-footer-background:#fff;                   //List的footer部分的背景色
+// @list-item-padding:20px;                          //List中的每一项的上下的padding；
+   
+// PopOver相关
+// popover title的颜色：@heading-color
+// @popover-bg:#fff;                               //popover的背景色
+// @popover-color:#000;                            //popover的文字颜色，不赋值则默认是@text-color
+// @popover-min-width:200px;                         //popover最小宽度
+// @popover-arrow-width: 6px;                        //popover小三角的宽度
+// @popover-arrow-color: #fff;                //popover小三角的背景色
+
+// Tooltip相关
+// @tooltip-bg:rgba(0, 0, 0, 0.75);                //tooltip的背景色
+// @tooltip-color:#fff;                           //tooltip文字颜色
+// @tooltip-arrow-width:6px;                        //tooltip小三角的宽度
+// @tooltip-arrow-color:rgba(0, 0, 0, 0.75);                      //tooltip小三角的背景色
+
+// Tabs相关
+// tabs的title和内容的文字颜色：@text-color
+// 被选中的tabs的title颜色：@primary-color
+// tabs的title被hover时的颜色基色：@primary-color
+// @tabs-title-font-size:12px;                       //tabs的title的文字大小
+// @tabs-ink-bar-color:#1890ff;                    //被选中的tab底部的bar的颜色
+// @tabs-hover-color:@primary-color;                      //tabs的title被hover时的颜色,不自定义的时候默认@primary-color
+
+// TimeLine相关，可通过设置color属性去设置圆圈的颜色
+
+// Table相关
+// @table-header-bg:#eaeef0;                       //表头背景色，默认@background-color-light
+// @table-header-color:#78909c;                                  //表头文字颜色
+// @table-row-hover-bg:#fafafa;    
+// @table-selected-row-bg: #fafafa;
+// @table-expanded-row-bg: #fbfbfb;                          //表格被选中行的背景色
+// @table-expanded-row-bg:rgba(0, 0, 0, 0.01);
+// @table-padding-vertical: 16px;
+// @table-padding-horizontal: 16px;
+
+// Popconfirm相关
+
+
+// Progress相关
+// @progress-default-color:#4cce18;                              //进度条已完成部分的颜色，默认@processing-color
+// @progress-remaining-color:#bdeca7;                            //进度条未完成部分的颜色，默认@background-color-base;
+
+// Spin相关
+// Spin颜色：@primary-color
+// @spin-dot-size: 20px;                                           //整个spin的宽度
+
+// Steps相关
+// @steps-icon-size: 24px;
+// @steps-small-icon-size: 24px;
+
+// TopNav相关
+// @toplink-color:#94a8c6;  
+// @toplink-active-color:#108ee9;
+
+// @bg: #f2f7fa;
+// @font: #333333;
+// @header-layout-color:#94a8c6;
+// @header-layout-active-color:#fff;
+// @header-layout-active-bg:#262e36;
+
+// 关于logo，可自定义width，height，padding，margin
+// .logo(@width,@height,@padding,@margin){
+//     display: block;
+//     float: left;
+//     width: @width;
+//     height: @height;
+//     padding:@padding;
+// }
+// 顶部导航，可自定义height、padding、font-size
+// .header(@height,@padding,@fontSize){
+//     height: @height;
+//     line-height: @height;
+//     padding:@padding;
+//     font-size: @fontSize;
+// }
+// ul li{
+//     list-style-type: none;
+// }

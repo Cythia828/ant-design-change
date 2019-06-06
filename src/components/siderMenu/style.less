@@ -1,0 +1,30 @@
+@charset 'UTF-8';
+
+@height: 60px;
+@import '../../assets/css/global.less';
+.yux-sider {
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  .logo {
+     .logo(60px,#fff);
+  }
+  .next-ver {
+    background: #001529;
+    color: #ccc;
+    border-right: 0;
+    .ant-menu-submenu > .ant-menu {
+      background: #001529;
+      color: #ccc;
+    }
+    .ant-menu-item > a {
+      color: #ccc;
+    }
+    .ant-menu-item-selected {
+      width: 100%;
+      background: #1890ff;
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
