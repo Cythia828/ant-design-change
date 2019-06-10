@@ -51,7 +51,10 @@ const mapStateToProps = state => {
     collapsed: state.global.collapsed,
     userList: state.global.userList,
     userInfo: state.global.userInfo,
-    // layout: state.setting.layout,
+    layout: state.setting.layout,
+    navTheme: state.setting.navTheme,
+    contentWidth:state.setting.contentWidth,
+    fixedHeader:state.setting.fixedHeader
     // menuData: state.menuModel.menuData,
     // breadcrumbNameMap: state.menuModel.breadcrumbNameMap,
     // ...setting,
@@ -113,6 +116,17 @@ class BaseLayout extends React.Component {
     }
     return <MySettingDrawer></MySettingDrawer>;
   };
+
+  getCurrentStyle = ()=> {
+    const { contentWidth } = this.props;
+    if(contentWidth == 'Fluid'){
+      let obj = {minHeight: '100vh',width:"100%"};
+      return obj;
+    }else{
+      let obj = {minHeight: '100vh',maxWidth:"1200px"}
+      return obj;
+    }
+  }
   
   render() {
     const {
@@ -124,25 +138,26 @@ class BaseLayout extends React.Component {
       menuData,
       breadcrumbNameMap,
       fixedHeader,
+      contentWidth,
     } = this.props;
 
     // const isTop = PropsLayout === 'topmenu';
     console.log(navTheme,'navTheme')
     const leftLayout = (
-      <Layout className="yux-layout has-sider">
+      <Layout theme={navTheme} className="yux-layout has-sider">
         <SiderMenu {...this.props}/>
         <Layout className="yux-layout" style={{minHeight: '100vh'}}>
           <TopNavHeader {...this.props}/>
-          <Content className="yux-content">{children}</Content>
+          <Content className="yux-content" style={fixedHeader?{marginTop:'84px'}:{}}>{children}</Content>
           <GlobalFooter />
         </Layout>
       </Layout>
     );
     const topLayout = (
-      <Layout className="yux-layout has-sider">
+      <Layout className="yux-layout">
         <TopNavHeader {...this.props}/>
-        <Layout className="yux-layout" style={{minHeight: '100vh'}}>
-          <Content className="yux-content">{children}</Content>
+        <Layout className="yux-layout">
+          <Content className={contentWidth=='Fluid'?"yux-content-fluid":"yux-content"} style={fixedHeader?{marginTop:'84px'}:{}}>{children}</Content>
           <GlobalFooter />
         </Layout>
       </Layout>

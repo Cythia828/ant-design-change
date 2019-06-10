@@ -38,7 +38,7 @@ body {
     line-height: @height;
     padding-left: 20px;
     font-size: 22px;
-    color: #fff;
+    color: @hColor;
     img {
       display: inline-block;
       width: 32px;
@@ -55,28 +55,42 @@ body {
       font-weight: 600;
     }
 }
-.top-header{
+.top-menu-wrapper(){
+  overflow: hidden;
+  .logo{
+    .logo(60px,#fff);
+    float:left;
+    width:200px;
+  }
+  .top-menu{
+    float:left;
+    .ant-menu-dark {
+      .ant-menu-horizontal{
+        height:64px;
+      }
+    }
+  }
+  .userinfo{
+    float:right;
+  }
+}
+.top-header-dark{
   background:#001529;
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
   width:100%;
   .top-menu-wrapper{
-    overflow: hidden;
-    .logo{
-      .logo(60px,#fff);
-      float:left;
-      width:200px;
+    .top-menu-wrapper();
+    .ant-menu-horizontal{
+      border-bottom:none;
     }
-    .top-menu{
-      float:left;
-      .ant-menu-dark {
-        .ant-menu-horizontal{
-          height:64px;
-        }
-      }
-    }
-    .userinfo{
-      float:right;
-    }
+  }
+}
+.top-header-light{
+  background:#fff;
+  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  width:100%;
+  .top-menu-wrapper{
+    .top-menu-wrapper();
   }
 }
 

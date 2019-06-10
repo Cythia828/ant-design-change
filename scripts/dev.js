@@ -5,10 +5,21 @@ var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var apiMocker = require('mocker-api');
-
+var defaultSettings = require('../src/defaultSettings.js')
+const ThemeColorReplacer = require('webpack-theme-color-replacer');
 var LibsLocation = {
   title: '袋鼠云日志－高性能可扩展的日志集中、搜索和分析平台',
 };
+function getAntdSerials(color) {
+  const lightens = new Array(9).fill().map((t, i) => {
+    return ThemeColorReplacer.varyColor.lighten(color, i / 10);
+  });
+  // 此处为了简化，采用了darken。实际按color.less需求可以引入tinycolor, colorPalette变换得到颜色值
+  const darkens = new Array(6).fill().map((t, i) => {
+    return ThemeColorReplacer.varyColor.darken(color, i / 10);
+  });
+  return lightens.concat(darkens);
+}
 
 module.exports = function makeWebpackConfig() {
 
@@ -64,7 +75,8 @@ module.exports = function makeWebpackConfig() {
             loader:'less-loader',
             options:{
               modifyVars:{
-                "icon-url":"\'../src/assets/fonts/antd_icon\'"
+                "icon-url":"\'../src/assets/fonts/antd_icon\'",
+                'primary-color': defaultSettings.primaryColor
               },
               javascriptEnabled:true
             }
@@ -134,6 +146,10 @@ module.exports = function makeWebpackConfig() {
         }
       }
     }),
+    new ThemeColorReplacer({
+      fileName: 'css/theme-colors.css',
+      matchColors: getAntdSerials('#722ED1'), // 主色系列
+    }),
 
     new HtmlWebpackPlugin({
       filename: 'easylog.html',
@@ -156,7 +172,6 @@ module.exports = function makeWebpackConfig() {
       context: __dirname,
       manifest: require('../manifest.json')
     }),
-
   ];
 
   /**
@@ -179,20 +194,20 @@ module.exports = function makeWebpackConfig() {
     proxy: [
       {
         path: '/log/api/v2/host/**',
-        target: 'http://192.168.20.152:8855',
-        // target: 'http://172.16.8.198:8855',
+        // target: 'http://192.168.20.152:8855',
+        target: 'http://172.16.8.198:8855',
         changeOrigin: true,
       },
       {
         path: '/log/api/v2/agent/**',
-        target: 'http://192.168.20.152:8855',
-        // target: 'http://172.16.8.198:8855',
+        // target: 'http://192.168.20.152:8855',
+        target: 'http://172.16.8.198:8855',
         changeOrigin: true,
       },
       {
         path: '/log/api/v2/forwarder/**',
-        target: 'http://192.168.20.152:8855',
-        // target: 'http://172.16.8.198:8855',
+        // target: 'http://192.168.20.152:8855',
+        target: 'http://172.16.8.198:8855',
         changeOrigin: true,
       },
       {

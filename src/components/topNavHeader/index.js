@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon, Dropdown, Menu, Layout } from 'antd';
 import { Link } from 'react-router';
 import './style.less';
-import '../../assets/css/global.less'
+// import '../../assets/css/global.less'
 const {  Header } = Layout;
 const { SubMenu } = Menu;
 const data = [
@@ -356,7 +356,7 @@ class TopNav extends React.Component {
   }
 
   render() {
-    const { collapsed, userInfo ,layout ,navTheme } = this.props;
+    const { collapsed, userInfo ,layout ,navTheme ,fixedHeader } = this.props;
     const { username } = userInfo;
     const menu = (
       <Menu>
@@ -414,7 +414,8 @@ class TopNav extends React.Component {
 
     
     return (
-      <Header className={layout=='topmenu'?"top-header":"yux-header"}>
+      <Header className={layout == 'topmenu'?(navTheme === 'dark'?'top-header-dark':'top-header-light'):'yux-header'}
+       style={fixedHeader?{position: 'fixed', zIndex: 1, width: '100%'}:{}}>
         {
           layout == 'topmenu'
           ?

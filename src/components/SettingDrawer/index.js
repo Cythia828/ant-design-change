@@ -34,7 +34,7 @@ class SettingDrawer extends Component {
     } = this.props;
     return [
       {
-        title: formatMessage({ id: 'app.setting.content-width' }),
+        title: formatMessage({ key: 'app.setting.content-width' }),
         action: (
           <Select
             value={contentWidth}

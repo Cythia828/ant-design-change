@@ -351,9 +351,11 @@ class SiderMenu extends React.Component {
   
   render() {
     const { navigation=[], collapsed ,navTheme } = this.props;
+    console.log(navTheme,'navTheme--sider')
     return (
       <Sider 
-        className="yux-sider"
+        className={"yux-sider"}
+        theme={navTheme}
         collapsible={false}
         collapsed={collapsed}
         trigger={null}

@@ -4,11 +4,13 @@ import { LocaleProvider } from 'antd';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { formatMessage } from 'umi-plugin-react/locale';
 import "../umirc.js";
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+import zhCN from './pages/locales/zh-CN.js';
 import configureStore from './public/index';
 import routers from './routers';
-import "./assets/css/global.less"
+
+import "./assets/css/global.less";
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 export const locale = {

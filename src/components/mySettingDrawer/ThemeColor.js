@@ -53,13 +53,13 @@ const ThemeColor = ({ colors, title, value, onChange }) => {
     ];
   }
   return (
-    <div className={styles.themeColor}>
-      <h3 className={styles.title}>{title}</h3>
-      <div className={styles.content}>
+    <div className="themeColor">
+      <h3 className="title">{title}</h3>
+      <div className="content">
         {colorList.map(({ key, color }) => (
           <Tooltip key={color} title={formatMessage({ id: `app.setting.themecolor.${key}` })}>
             <Tag
-              className={styles.colorBlock}
+              className="colorBlock"
               color={color}
               check={value === color}
               onClick={() => onChange && onChange(color)}
