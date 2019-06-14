@@ -54,7 +54,9 @@ const mapStateToProps = state => {
     layout: state.setting.layout,
     navTheme: state.setting.navTheme,
     contentWidth:state.setting.contentWidth,
-    fixedHeader:state.setting.fixedHeader
+    fixedHeader:state.setting.fixedHeader,
+    autoHideHeader:state.setting.autoHideHeader,
+    fixSiderbar:state.setting.fixSiderbar
     // menuData: state.menuModel.menuData,
     // breadcrumbNameMap: state.menuModel.breadcrumbNameMap,
     // ...setting,
@@ -92,7 +94,7 @@ class BaseLayout extends React.Component {
   
 
   componentDidMount() {
-    const { getNavigation, currentUser, getUsers } = this.props;
+    const { getNavigation, currentUser, getUsers,autoHideHeader} = this.props;
     getNavigation();
     getUsers();
     currentUser();
@@ -138,7 +140,9 @@ class BaseLayout extends React.Component {
       menuData,
       breadcrumbNameMap,
       fixedHeader,
+      autoHideHeader,
       contentWidth,
+      fixSiderbar
     } = this.props;
 
     // const isTop = PropsLayout === 'topmenu';
@@ -146,9 +150,9 @@ class BaseLayout extends React.Component {
     const leftLayout = (
       <Layout theme={navTheme} className="yux-layout has-sider">
         <SiderMenu {...this.props}/>
-        <Layout className="yux-layout" style={{minHeight: '100vh'}}>
+        <Layout className="yux-layout" style={fixSiderbar?{minHeight: '100vh',marginLeft:'200px'}:{minHeight: '100vh'}}>
           <TopNavHeader {...this.props}/>
-          <Content className="yux-content" style={fixedHeader?{marginTop:'84px'}:{}}>{children}</Content>
+          <Content className={"yux-content"} style={fixedHeader?{marginTop:'84px'}:{}}>{children}</Content>
           <GlobalFooter />
         </Layout>
       </Layout>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Select, message, Drawer, List, Switch, Divider, Icon, Button, Alert, Tooltip } from 'antd';
 const { Option } = Select;
-import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi-plugin-react/locale';
+// import { FormattedMessage } from 'react-intl'
+import copy from 'copy-to-clipboard';
 // import {settingAction} from '../../models/setting'
 // import { connect } from 'react-redux';
 import { connect } from 'dva';
@@ -19,7 +21,7 @@ const Body = ({ children, title, style }) => (
       marginBottom: 24,
     }}
   >
-    <h3 className={styles.title}>{title}</h3>
+    <h3 className="title">{title}</h3>
     {children}
   </div>
 );
@@ -39,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps,mapDispatchToProps)
 export default class MySettingDrawer extends Component{
     state = {
-      collapse:true
+      collapse:false
     }
 
     togglerContent = () => {
@@ -63,12 +65,10 @@ export default class MySettingDrawer extends Component{
             >
               {layout === 'sidemenu' ? null : (
                 <Option value="Fixed">
-                  {formatMessage({ id: 'app.setting.content-width.fixed' })}
-                  {/* 定宽 */}
+                  定宽
                 </Option>
               )}
               <Option value="Fluid">
-                {/* {formatMessage({ id: 'app.setting.content-width.fluid' })} */}
                 流式
               </Option>
             </Select>
@@ -87,7 +87,7 @@ export default class MySettingDrawer extends Component{
         {
           title: '下滑隐藏Header',
           disabled: !fixedHeader,
-          disabledReason: formatMessage({ id: 'app.setting.hideheader.hint' }),
+          disabledReason: "固定Header时可配置",
           action: (
             <Switch
               size="small"
@@ -99,7 +99,7 @@ export default class MySettingDrawer extends Component{
         {
           title: '固定侧边菜单',
           disabled: layout === 'topmenu',
-          disabledReason: formatMessage({ id: 'app.setting.fixedsidebar.hint' }),
+          disabledReason: "侧边菜单布局时可配置",
           action: (
             <Switch
               size="small"
@@ -141,6 +141,12 @@ export default class MySettingDrawer extends Component{
       });
     };
 
+    handleCopy = () => {
+      const { setting } = this.props;
+      copy(JSON.stringify(setting));
+      message.success("拷贝成功，请到src/defaultSettings.js中替换默认设置");
+    }
+
     render(){
       // const { setting} = this.props;
       // console.log(setting,'setting')
@@ -154,7 +160,7 @@ export default class MySettingDrawer extends Component{
             onClose={this.togglerContent}
             placement="right"
             handler={
-              <div className={styles.handle} onClick={this.togglerContent}>
+              <div className="handle" onClick={this.togglerContent}>
                 <Icon
                   type={collapse ? 'close' : 'setting'}
                   style={{
@@ -168,19 +174,19 @@ export default class MySettingDrawer extends Component{
               zIndex: 999,
           }}
             >
-              <div className={styles.content}>
+              <div className="content">
                 <Body title={"整体风格设置"}>
                   <BlockCheckbox
                     list={[
                       {
                         key: 'dark',
                         url: 'https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg',
-                        title: "",
+                        title: "暗色菜单风格",
                       },
                       {
                         key: 'light',
                         url: 'https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg',
-                        title:"",
+                        title:"亮色菜单风格",
                       },
                     ]}
                     value={navTheme}
@@ -195,18 +201,18 @@ export default class MySettingDrawer extends Component{
 
               <Divider />
               <Button type="primary">点击</Button>
-              <Body title={"页面布局"}>
+              <Body title={"导航模式"}>
                 <BlockCheckbox
                   list={[
                     {
                       key: 'sidemenu',
                       url: 'https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg',
-                      title: formatMessage({ id: 'app.setting.sidemenu' }),
+                      title: "侧边菜单布局",
                     },
                     {
                       key: 'topmenu',
                       url: 'https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg',
-                      title: formatMessage({ id: 'app.setting.topmenu' }),
+                      title: "顶部菜单布局",
                     },
                   ]}
                   value={layout}
@@ -218,6 +224,11 @@ export default class MySettingDrawer extends Component{
                 dataSource={this.getLayoutSetting()}
                 renderItem={this.renderLayoutSettingItem}
               />
+              <Divider />
+              <Button type="normal" onClick={()=>this.handleCopy()}>
+                <Icon type="copy"/>
+                拷贝设置
+              </Button>
               </div>
                 
             </Drawer>

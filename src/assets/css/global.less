@@ -31,6 +31,11 @@ body {
     height: 0;
   }
 }
+
+// 导航logo
+// @height:logo高度
+// @hColor:系统名字的颜色
+
 .logo(@height,@hColor){
   display: inline-block;
     width: 100%;
@@ -55,6 +60,45 @@ body {
       font-weight: 600;
     }
 }
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+  }
+  20%{
+    opacity: 0.8;
+  }
+  40%{
+    opacity: 0.6;
+  }
+  60%{
+    opacity: 0.4;
+  }
+  80%{
+    opacity: 0.2;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 0.3;
+  }
+  60%{
+    opacity: 0.6;
+  }
+  90%{
+    opacity: 0.9;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+// 导航在顶部时的样式
+// 
 .top-menu-wrapper(){
   overflow: hidden;
   .logo{
@@ -74,10 +118,11 @@ body {
     float:right;
   }
 }
+// 顶部导航样式：dark主题
 .top-header-dark{
   background:#001529;
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
-  width:100%;
+  transition:opacity 1s;
   .top-menu-wrapper{
     .top-menu-wrapper();
     .ant-menu-horizontal{
@@ -85,13 +130,59 @@ body {
     }
   }
 }
+// 顶部导航样式：light主题
 .top-header-light{
   background:#fff;
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
   width:100%;
+  transition:opacity 1s;
   .top-menu-wrapper{
     .top-menu-wrapper();
   }
 }
-
-
+// 左边导航一级菜单和二级菜单样式
+  // .next-ver {
+  //   background: #001529;
+  //   color: #ccc;
+  //   border-right: 0;
+  //   .ant-menu-submenu > .ant-menu {
+  //     background: #001529;
+  //     color: #ccc;
+  //   }
+  //   .ant-menu-item > a {
+  //     color: #ccc;
+  //   }
+  //   .ant-menu-item-selected {
+  //     width: 100%;
+  //     background: #1890ff;
+  //     a {
+  //       color: #fff;
+  //     }
+  //   }
+  // }
+  // .ant-btn-primary:hover, .ant-btn-primary:focus{
+  //   background-color:@primary-color;
+  //   border-color: @primary-color;
+  // }
+  // 顶部导航高度
+  .ant-menu-horizontal{
+    line-height:64px;
+  }
+  // 表格样式
+  table {
+    background: #fff;
+    .ant-table-thead>tr>th {
+      background: #eaeef0;
+      .ant-th {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+    .ant-table-tbody>tr>td {
+      .icon-tips {
+        margin-left: 10px;
+      }
+    }
+  }
+  // .screen-xl .yux-layout .ant-table-tbody .ant-table-row:hover{
+  //   background: fade(@primary-color, 65%);
+  // }

@@ -44,11 +44,19 @@ class SettingDrawer extends Component {
           >
             {layout === 'sidemenu' ? null : (
               <Option value="Fixed">
-                {formatMessage({ id: 'app.setting.content-width.fixed' })}
+                {/* {formatMessage({ id: 'app.setting.content-width.fixed' })} */}
+                <FormattedMessage 
+                　　id="app.setting.content-width.fixed"
+                　　defaultMessage={'app.setting.content-width.fixed'}
+                />
               </Option>
             )}
             <Option value="Fluid">
-              {formatMessage({ id: 'app.setting.content-width.fluid' })}
+              {/* {formatMessage({ id: 'app.setting.content-width.fluid' })} */}
+              <FormattedMessage 
+                　　id="app.setting.content-width.fluid"
+                　　defaultMessage={'app.setting.content-width.fluid'}
+                />
             </Option>
           </Select>
         ),

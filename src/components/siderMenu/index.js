@@ -350,15 +350,16 @@ class SiderMenu extends React.Component {
   }
   
   render() {
-    const { navigation=[], collapsed ,navTheme } = this.props;
+    const { navigation=[], collapsed ,navTheme,fixSiderbar } = this.props;
     console.log(navTheme,'navTheme--sider')
     return (
       <Sider 
-        className={"yux-sider"}
+        className={navTheme==='dark'?"yux-sider":"yux-sider-light"}
         theme={navTheme}
         collapsible={false}
         collapsed={collapsed}
         trigger={null}
+        style={fixSiderbar?{position:'fixed',zIndex:'1000'}:{}}
       >
         <div className="logo" id="logo">
           <Link to="/search">

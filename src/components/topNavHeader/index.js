@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon, Dropdown, Menu, Layout } from 'antd';
 import { Link } from 'react-router';
 import './style.less';
+import { findDOMNode } from 'react-dom';
 // import '../../assets/css/global.less'
 const {  Header } = Layout;
 const { SubMenu } = Menu;
@@ -331,6 +332,20 @@ const data = [
 ];
 
 class TopNav extends React.Component {
+  componentDidMount(){
+
+    window.onscroll = (e) => {
+      const { autoHideHeader } = this.props;
+      if(autoHideHeader&&window.scrollY>0){
+        // console.log(this.header,'scrollY')
+        findDOMNode(this.header).style.animation = "fadeOut 1s";
+        findDOMNode(this.header).style.display = "none";
+      }else if(autoHideHeader&&window.scrollY<=0){
+        findDOMNode(this.header).style.animation = "fadeIn 1s";
+        findDOMNode(this.header).style.display = "block";
+      }
+    }
+  }
 
   toggle = () => {
     const { collapsed, changeCollapsed } = this.props;
@@ -356,7 +371,7 @@ class TopNav extends React.Component {
   }
 
   render() {
-    const { collapsed, userInfo ,layout ,navTheme ,fixedHeader } = this.props;
+    const { collapsed, userInfo ,layout ,navTheme ,fixedHeader ,autoHideHeader} = this.props;
     const { username } = userInfo;
     const menu = (
       <Menu>
@@ -414,7 +429,7 @@ class TopNav extends React.Component {
 
     
     return (
-      <Header className={layout == 'topmenu'?(navTheme === 'dark'?'top-header-dark':'top-header-light'):'yux-header'}
+      <Header ref={(header)=>this.header = header} className={layout == 'topmenu'?(navTheme === 'dark'?'top-header-dark':'top-header-light'):'yux-header'}
        style={fixedHeader?{position: 'fixed', zIndex: 1, width: '100%'}:{}}>
         {
           layout == 'topmenu'

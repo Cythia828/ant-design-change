@@ -48,10 +48,6 @@ export const settingAction = {
         updateTheme(primaryColor);
       }
       updateColorWeak(colorWeak);
-      // return {
-      //   ...state,
-      //   ...setting,
-      // };
       dispatch({
         type: actionType.GET_SETTING,
         payload: {
@@ -64,7 +60,7 @@ export const settingAction = {
   changeSetting(payload) {
    return async(dispatch)=>{
     const urlParams = new URL(window.location.href);
-    console.log(payload,'payload')
+    // console.log(payload,'payload')
     Object.keys(defaultSettings).forEach(key => {
       if (urlParams.searchParams.has(key)) {
         urlParams.searchParams.delete(key);
@@ -84,8 +80,9 @@ export const settingAction = {
     });
     const { primaryColor, colorWeak, contentWidth } = payload;
     if (initState.primaryColor !== primaryColor) {
-      updateTheme(primaryColor);
+      // updateTheme(primaryColor);
     }
+    updateTheme(primaryColor);
     if (initState.contentWidth !== contentWidth && window.dispatchEvent) {
       window.dispatchEvent(new Event('resize'));
     }
@@ -176,7 +173,6 @@ export const settingReducer = (state=initState, action) => {
       };
     }
     case actionType.CHNAGE_SETTING: {
-      console.log(payload,'payload')
       return {
         ...state,
         ...payload

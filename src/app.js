@@ -4,7 +4,7 @@ import { LocaleProvider } from 'antd';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi-plugin-react/locale';
 import "../umirc.js";
 import zhCN from './pages/locales/zh-CN.js';
 import configureStore from './public/index';

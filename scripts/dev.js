@@ -7,20 +7,70 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var apiMocker = require('mocker-api');
 var defaultSettings = require('../src/defaultSettings.js')
 const ThemeColorReplacer = require('webpack-theme-color-replacer');
+const tinycolor = require('tinycolor2');
 var LibsLocation = {
   title: '袋鼠云日志－高性能可扩展的日志集中、搜索和分析平台',
 };
-function getAntdSerials(color) {
-  const lightens = new Array(9).fill().map((t, i) => {
-    return ThemeColorReplacer.varyColor.lighten(color, i / 10);
-  });
-  // 此处为了简化，采用了darken。实际按color.less需求可以引入tinycolor, colorPalette变换得到颜色值
-  const darkens = new Array(6).fill().map((t, i) => {
-    return ThemeColorReplacer.varyColor.darken(color, i / 10);
-  });
-  return lightens.concat(darkens);
+function getHue(hsv, i, isLight) {
+  var hue;  
+  if (hsv.h >= 60 && hsv.h <= 240) { 
+    hue = isLight ? hsv.h - 2 * i : hsv.h +2 * i;  
+  } else {  
+    hue = isLight ? hsv.h + 2 * i : hsv.h - 2 * i; 
+  }  
+  if (hue < 0) { 
+    hue += 360;  
+  } else if (hue >= 360) {  
+    hue -= 360;  
+  }  
+  return Math.round(hue); 
+}  
+function getSaturation(hsv, i, isLight) {
+  var saturation;
+  if (isLight) {  
+    saturation = Math.round(hsv.s * 100) - 16* i;  
+  } else if (i == 4) {  
+    saturation = Math.round(hsv.s * 100) +16;
+  } else {
+    saturation = Math.round(hsv.s * 100) + 5 * i;
+  }
+  if (saturation > 100) {
+    saturation = 100;
+  }
+  if (isLight && i === 5 && saturation > 10) {
+    saturation = 10;
+  }
+  if (saturation < 6) {
+    saturation = 6;
+  }
+    return Math.round(saturation); 
+}
+function getValue (hsv, i, isLight) { 
+  if (isLight) { 
+    return Math.round(hsv.v * 100) + 5 * i; 
+  } 
+  return Math.round(hsv.v * 100) - 15 * i;  
+}
+function changeColor (color, index) {
+  var isLight = index <= 6;
+  var hsv = tinycolor(color).toHsv();
+  var i = isLight ? 5 + 1 - index : index -5 - 1;
+  return tinycolor({
+    h:getHue(hsv, i, isLight),  
+    s: getSaturation(hsv, i, isLight), 
+    v:getValue(hsv, i, isLight),
+  }).toHexString();
+} 
+function getAntdSerials(color){
+  let arr = [];
+  for(let i = 1;i<10;i++){
+    arr.push(changeColor(color,i));
+  }
+  arr.push(color);
+  return arr;
 }
 
+// console.log(getAntdSerials(defaultSettings.primaryColor),'ds')
 module.exports = function makeWebpackConfig() {
 
   var config = {};
@@ -147,8 +197,21 @@ module.exports = function makeWebpackConfig() {
       }
     }),
     new ThemeColorReplacer({
-      fileName: 'css/theme-colors.css',
-      matchColors: getAntdSerials('#722ED1'), // 主色系列
+            fileName: 'css/theme-colors-[contenthash:8].css', // output css file name, suport [contenthash] and [hash].
+            matchColors: getAntdSerials("#1890FF"), // 主色系列
+            externalCssFiles: ['./node_modules/antd/lib/button/style/index.less','./src/assets/css/global.less'], // optional, String or string array. Set external css files (such as cdn css) to extract colors.
+            changeSelector(cssSelector) { // optional, Funciton. Changing css selectors, in order to raise css priority, to resolve lazy-loading problems.
+              switch (cssSelector) {
+                case '.ant-calendar-today .ant-calendar-date':
+                  return ':not(.ant-calendar-selected-date)' + cssSelector;
+                case '.ant-btn:focus,.ant-btn:hover':
+                  return '.ant-btn:focus:not(.ant-btn-primary),.ant-btn:hover:not(.ant-btn-primary)';
+                case '.ant-btn.active,.ant-btn:active':
+                  return '.ant-btn.active:not(.ant-btn-primary),.ant-btn:active:not(.ant-btn-primary)';
+                default:
+                  return cssSelector;
+              }
+            },
     }),
 
     new HtmlWebpackPlugin({
@@ -173,7 +236,7 @@ module.exports = function makeWebpackConfig() {
       manifest: require('../manifest.json')
     }),
   ];
-
+  
   /**
    * devServer 配置
    */

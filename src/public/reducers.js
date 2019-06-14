@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import "../../umirc.js";
-import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi-plugin-react/locale';
 import { routerReducer as routing } from 'react-router-redux';
 import { globalReducers } from '../models/global';
 import { agentReducers } from '../pages/Index/models';
