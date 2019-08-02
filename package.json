@@ -9,6 +9,7 @@
     "build": "webpack --bail --progress --profile --colors --json --config ./scripts/pro.js > stats.json"
   },
   "dependencies": {
+    "@ant-design/colors": "^3.1.0",
     "@antv/data-set": "^0.10.2",
     "antd": "3.16.6",
     "bizcharts": "^3.5.2",

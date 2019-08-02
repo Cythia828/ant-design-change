@@ -19,8 +19,8 @@ export default {
     console.log(generate("#1890FF"),'generate("#1890FF")')
     const options = {
       // cssUrl:  'css/theme-colors-[contenthash:8].css', // hash模式下用相对路径
-      oldColors: this.getAntdSerials(lastColor), // current colors array. The same as `matchColors`
-      newColors: this.getAntdSerials(newColor || this.primaryColor) // new colors array, one-to-one corresponde with `oldColors`
+      oldColors: generate(lastColor), // current colors array. The same as `matchColors`
+      newColors: generate(newColor || this.primaryColor) // new colors array, one-to-one corresponde with `oldColors`
     }
     const promise = client.changer.changeColor(options)
     this.lastColor = lastColor

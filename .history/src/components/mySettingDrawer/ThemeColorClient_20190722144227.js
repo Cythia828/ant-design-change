@@ -16,7 +16,6 @@ export default {
   changeColor (newColor) {
     const lastColor = this.lastColor || this.primaryColor
     console.log(this.getAntdSerials("#1890FF"),'newColor || this.primaryColor')
-    console.log(generate("#1890FF"),'generate("#1890FF")')
     const options = {
       // cssUrl:  'css/theme-colors-[contenthash:8].css', // hash模式下用相对路径
       oldColors: this.getAntdSerials(lastColor), // current colors array. The same as `matchColors`

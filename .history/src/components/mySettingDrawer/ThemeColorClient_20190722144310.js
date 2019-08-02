@@ -1,7 +1,7 @@
 const client = require('webpack-theme-color-replacer/client')
 import defaultSettings from '../../defaultSettings.js';
 import colorPlatte from './colorPlatte';
-import { generate, presetPalettes } from '@ant-design/colors';
+import { generate, presetPalettes } from 'ant-design/colors';
 export default {
   primaryColor: '#1890ff',
   getAntdSerials(color){
